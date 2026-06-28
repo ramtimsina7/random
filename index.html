@@ -1,8 +1,599 @@
-<html>
-    <head>
-        <title>Ram Timsina</title>
-    </head>
-    <body>
-        <h1><marquee>COMING SOON !!!</marquee></h1>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ram Kumar Timsina — Educator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;500&family=Noto+Serif+Devanagari:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage:    #4A7C59;
+      --sage-lt: #6EA882;
+      --cream:   #FAF7F2;
+      --ink:     #1A1A2E;
+      --mist:    #E8F0EB;
+      --gold:    #C9963A;
+      --stone:   #7A7A8A;
+      --white:   #FFFFFF;
+
+      --ff-display: 'Playfair Display', Georgia, serif;
+      --ff-body:    'Inter', system-ui, sans-serif;
+      --ff-dev:     'Noto Serif Devanagari', serif;
+
+      --max: 1080px;
+      --gap: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--ff-body);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--mist);
+      padding: 0.85rem var(--gap);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      color: var(--sage);
+      letter-spacing: 0.01em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--stone);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--sage); }
+
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem var(--gap) 3rem;
+      gap: 3rem;
+    }
+
+    .hero-text { }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 1.4rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block; width: 28px; height: 2px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: var(--ff-display);
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--sage);
+    }
+
+    .hero-dev-name {
+      font-family: var(--ff-dev);
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--stone);
+      margin-bottom: 1.6rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--stone);
+      max-width: 420px;
+      margin-bottom: 2.2rem;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--sage);
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.75rem 1.8rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .hero-cta:hover { background: var(--sage-lt); transform: translateY(-2px); }
+
+    /* Illustration card */
+    .hero-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-illustration {
+      width: clamp(220px, 36vw, 400px);
+      aspect-ratio: 3/4;
+      position: relative;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 2.5rem var(--gap);
+    }
+    .stats-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--gold);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--stone);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem var(--gap);
+    }
+
+    .section-label {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--stone);
+      max-width: 560px;
+      margin-bottom: 3rem;
+    }
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--mist);
+      margin: 0 var(--gap);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-body p { color: var(--stone); margin-bottom: 1rem; }
+    .about-facts { display: flex; flex-direction: column; gap: 1rem; }
+    .fact-card {
+      background: var(--white);
+      border: 1px solid var(--mist);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .fact-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .fact-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone); }
+    .fact-value { font-weight: 500; font-size: 0.95rem; }
+
+    /* ── CAREER ── */
+    #career { background: var(--mist); border-radius: 16px; margin: 0 var(--gap) 2rem; padding: 4rem var(--gap); max-width: none; }
+    .career-inner { max-width: var(--max); margin: 0 auto; }
+
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 6px; bottom: 0;
+      width: 2px; background: var(--sage-lt);
+    }
+    .tl-item { position: relative; margin-bottom: 2.5rem; }
+    .tl-item::before {
+      content: '';
+      position: absolute; left: -2rem; top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--sage);
+      border: 3px solid var(--mist);
+    }
+    .tl-date {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.3rem;
+    }
+    .tl-title { font-family: var(--ff-display); font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .tl-place { color: var(--stone); font-size: 0.9rem; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background: var(--white);
+      border: 1px solid var(--mist);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(74,124,89,0.12); }
+    .skill-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .skill-name { font-weight: 500; margin-bottom: 0.3rem; }
+    .skill-desc { font-size: 0.85rem; color: var(--stone); }
+
+    /* ── CONTACT ── */
+    .contact-wrap {
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 16px;
+      padding: 4rem var(--gap);
+      text-align: center;
+      margin: 0 var(--gap) 5rem;
+    }
+    .contact-wrap .section-title { color: var(--white); margin-bottom: 0.6rem; }
+    .contact-wrap p { color: var(--stone); margin-bottom: 2rem; }
+    .contact-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
+    .contact-pill {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 0.6rem 1.3rem;
+      font-size: 0.88rem;
+      color: var(--cream);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .contact-pill:hover { background: rgba(255,255,255,0.12); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem var(--gap);
+      font-size: 0.8rem;
+      color: var(--stone);
+      border-top: 1px solid var(--mist);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; padding-top: 3rem; text-align: center; }
+      .hero-text { order: 2; }
+      .hero-card { order: 1; }
+      .hero-desc { margin: 0 auto 2rem; }
+      .hero-eyebrow { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--cream);
+        border-bottom: 1px solid var(--mist);
+        padding: 1.2rem var(--gap);
+        gap: 1rem;
+      }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      #career { margin: 0 0 2rem; border-radius: 0; }
+      .contact-wrap { margin: 0 0 3rem; border-radius: 0; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      .fade-in.visible { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">Ram Kumar Timsina</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text fade-in">
+    <div class="hero-eyebrow">Government Teacher · Jhapa, Nepal</div>
+    <h1 class="hero-name">Ram Kumar<br><em>Timsina</em></h1>
+    <p class="hero-dev-name">राम कुमार तिम्सिना</p>
+    <p class="hero-desc">
+      Educator, mentor, and dedicated government school teacher shaping young minds at Shree Singhabahini Adharbhut School in Arjundhara, Jhapa — for over two decades.
+    </p>
+    <a href="#about" class="hero-cta">Learn More</a>
+  </div>
+  <div class="hero-card fade-in">
+    <svg class="profile-illustration" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Background card -->
+      <rect width="300" height="400" rx="20" fill="#E8F0EB"/>
+      <!-- Decorative stripes -->
+      <rect x="0" y="340" width="300" height="60" rx="0" fill="#4A7C59" opacity="0.15"/>
+      <!-- Mountains (Ilam background) -->
+      <polygon points="0,260 60,160 120,260" fill="#4A7C59" opacity="0.25"/>
+      <polygon points="60,260 130,140 200,260" fill="#4A7C59" opacity="0.35"/>
+      <polygon points="150,260 230,150 300,260" fill="#4A7C59" opacity="0.2"/>
+      <!-- Ground -->
+      <ellipse cx="150" cy="265" rx="150" ry="12" fill="#4A7C59" opacity="0.15"/>
+      <!-- Body -->
+      <rect x="95" y="230" width="110" height="100" rx="10" fill="#1A1A2E"/>
+      <!-- Daura-Suruwal collar hint -->
+      <polygon points="140,230 150,250 160,230" fill="#C9963A" opacity="0.8"/>
+      <!-- Head -->
+      <circle cx="150" cy="185" r="48" fill="#C8A882"/>
+      <!-- Hair -->
+      <ellipse cx="150" cy="143" rx="48" ry="20" fill="#1A1A2E"/>
+      <!-- Eyes -->
+      <ellipse cx="137" cy="185" rx="5" ry="6" fill="#1A1A2E"/>
+      <ellipse cx="163" cy="185" rx="5" ry="6" fill="#1A1A2E"/>
+      <circle cx="139" cy="183" r="1.5" fill="white"/>
+      <circle cx="165" cy="183" r="1.5" fill="white"/>
+      <!-- Eyebrows -->
+      <path d="M130 174 Q137 170 144 174" stroke="#1A1A2E" stroke-width="2" fill="none"/>
+      <path d="M156 174 Q163 170 170 174" stroke="#1A1A2E" stroke-width="2" fill="none"/>
+      <!-- Smile -->
+      <path d="M140 198 Q150 207 160 198" stroke="#8B5E3C" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- Topi (Nepali hat) -->
+      <ellipse cx="150" cy="142" rx="38" ry="9" fill="#4A7C59"/>
+      <ellipse cx="150" cy="135" rx="28" ry="14" fill="#4A7C59"/>
+      <ellipse cx="150" cy="132" rx="26" ry="12" fill="#6EA882"/>
+      <!-- Book in hand -->
+      <rect x="170" y="255" width="30" height="40" rx="3" fill="#C9963A"/>
+      <rect x="173" y="258" width="24" height="34" rx="2" fill="#FAF7F2"/>
+      <line x1="185" y1="264" x2="195" y2="264" stroke="#7A7A8A" stroke-width="1.5"/>
+      <line x1="185" y1="270" x2="195" y2="270" stroke="#7A7A8A" stroke-width="1.5"/>
+      <line x1="185" y1="276" x2="193" y2="276" stroke="#7A7A8A" stroke-width="1.5"/>
+      <!-- Badge / Name plate -->
+      <rect x="70" y="355" width="160" height="35" rx="8" fill="white" opacity="0.9"/>
+      <text x="150" y="372" font-family="Playfair Display, serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="700">Ram Kumar Timsina</text>
+      <text x="150" y="384" font-family="Inter, sans-serif" font-size="8.5" fill="#4A7C59" text-anchor="middle">Educator · Since 2060 BS</text>
+    </svg>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="fade-in">
+      <span class="stat-num">20+</span>
+      <span class="stat-label">Years of Service</span>
+    </div>
+    <div class="fade-in">
+      <span class="stat-num">2060</span>
+      <span class="stat-label">Joined as Govt. Teacher (BS)</span>
+    </div>
+    <div class="fade-in">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Lives Touched</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <h2 class="section-title">A life dedicated<br>to education</h2>
+  <div class="about-grid">
+    <div class="about-body fade-in">
+      <p>
+        Born in the serene hills of Chisapani, Ilam, I grew up with a deep love for learning and community. Today, I serve as a government teacher at <strong>Shree Singhabahini Adharbhut School</strong> in Arjundhara, Jhapa — a position I have proudly held since 2060 BS.
+      </p>
+      <p>
+        Teaching, for me, is not merely a profession. It is a calling. Every student who walks through the classroom door carries the potential to change the world, and I consider it my greatest honour to help them discover that potential.
+      </p>
+      <p>
+        I reside in Budhabare, Jhapa, where I continue to be an active member of the local community, always eager to contribute beyond the walls of the school.
+      </p>
+    </div>
+    <div class="about-facts fade-in">
+      <div class="fact-card">
+        <div class="fact-icon">🏔️</div>
+        <div>
+          <div class="fact-label">Birthplace</div>
+          <div class="fact-value">Chisapani, Ilam</div>
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🏡</div>
+        <div>
+          <div class="fact-label">Residence</div>
+          <div class="fact-value">Budhabare, Jhapa</div>
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🎂</div>
+        <div>
+          <div class="fact-label">Date of Birth</div>
+          <div class="fact-value">Kartik 11, 2032 BS</div>
+        </div>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🏫</div>
+        <div>
+          <div class="fact-label">School</div>
+          <div class="fact-value">Shree Singhabahini Adharbhut School, Arjundhara</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CAREER -->
+<div id="career">
+  <div class="career-inner">
+    <div class="section-label">Journey</div>
+    <h2 class="section-title">Career Timeline</h2>
+    <p class="section-sub">A steadfast commitment to public education in Jhapa district.</p>
+    <div class="timeline fade-in">
+      <div class="tl-item">
+        <div class="tl-date">2032 BS · Kartik 11</div>
+        <div class="tl-title">Born in Chisapani, Ilam</div>
+        <p class="tl-place">Early life in the scenic hills of Ilam, Eastern Nepal</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2060 BS — Present</div>
+        <div class="tl-title">Government Teacher</div>
+        <p class="tl-place">Shree Singhabahini Adharbhut School, Arjundhara, Jhapa</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Ongoing</div>
+        <div class="tl-title">Community Educator & Mentor</div>
+        <p class="tl-place">Budhabare, Jhapa — shaping the next generation</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I Bring</div>
+  <h2 class="section-title">Skills &amp; Strengths</h2>
+  <p class="section-sub">Built through years of classroom experience and community engagement.</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-icon">📚</div>
+      <div class="skill-name">Classroom Teaching</div>
+      <div class="skill-desc">Experienced in delivering engaging, effective lessons to students of diverse backgrounds.</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🎓</div>
+      <div class="skill-name">Student Mentorship</div>
+      <div class="skill-desc">Guiding students in academic growth and personal development with patience and care.</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🗣️</div>
+      <div class="skill-name">Communication</div>
+      <div class="skill-desc">Skilled in Nepali and Hindi, fostering clear communication with students and parents.</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🤝</div>
+      <div class="skill-name">Community Engagement</div>
+      <div class="skill-desc">Active contributor to community welfare and education initiatives in Jhapa.</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">📝</div>
+      <div class="skill-name">Curriculum Planning</div>
+      <div class="skill-desc">Experienced in designing lesson plans aligned with national educational standards.</div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">💡</div>
+      <div class="skill-name">Problem Solving</div>
+      <div class="skill-desc">Addressing challenges in the classroom with creativity and dedication.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<div id="contact" class="contact-wrap fade-in">
+  <div class="section-label" style="color: var(--gold);">Get in Touch</div>
+  <h2 class="section-title">Let's Connect</h2>
+  <p>Reach out for educational collaboration, community initiatives, or general enquiries.</p>
+  <div class="contact-items">
+    <span class="contact-pill">📍 Budhabare, Jhapa, Nepal</span>
+    <span class="contact-pill">🏫 Arjundhara, Jhapa</span>
+    <span class="contact-pill">🇳🇵 Government School Teacher</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  &copy; <span id="yr"></span> Ram Kumar Timsina. Made by <a href="https://www.pratiktimsina.com.np">Pratik Timsina</a>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Hamburger
+  const btn = document.getElementById('hamburger');
+  const links = document.getElementById('navLinks');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    btn.classList.remove('open');
+    links.classList.remove('open');
+  }));
+
+  // Fade-in observer
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
 </html>
